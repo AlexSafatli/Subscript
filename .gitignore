@@ -1,3 +1,6 @@
+# CLion Hidden files
+.idea
+
 # Compiled Object files
 *.slo
 *.lo
