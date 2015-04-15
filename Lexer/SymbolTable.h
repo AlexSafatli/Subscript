@@ -5,11 +5,14 @@
 #ifndef SUBSCRIPT_SYMBOLTABLE_H
 #define SUBSCRIPT_SYMBOLTABLE_H
 
+#include <unordered_map>
 #include "AttributeValue.h"
+
+using namespace std;
 
 class SymbolTable {
 private:
-    map<int,AttributeValue&> table;
+    unordered_map<int,AttributeValue> table;
 public:
     AttributeValue &getAttributeValueByIndex(int index) const;
 };
