@@ -3,3 +3,7 @@
 //
 
 #include "Lexer.h"
+
+bool Lexer::hasNextToken() {
+    return (Lexer::source.in_avail() > 0);
+}

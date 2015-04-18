@@ -5,17 +5,22 @@
 #ifndef SUBSCRIPT_LEXER_H
 #define SUBSCRIPT_LEXER_H
 
-#include <string>
+#include <fstream>
 #include <vector>
 #include "Token.h"
 using namespace std;
 
 class Lexer {
 private:
-    string source;
-    int position;
+    const char* fname;
+    filebuf source;
     vector<Token> tokens;
 public:
+    Lexer(const char* filename) {
+        source.open(filename,ios::in);
+        fname = filename;
+    }
+    bool hasNextToken();
     Token &getNextToken() const;
 };
 

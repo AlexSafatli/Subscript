@@ -5,8 +5,13 @@
 #ifndef SUBSCRIPT_ATTRIBUTEVALUE_H
 #define SUBSCRIPT_ATTRIBUTEVALUE_H
 
+#include <string>
+#include "Type.h"
+using namespace std;
 
 class AttributeValue {
+private:
+    Type type;
 
 };
 
