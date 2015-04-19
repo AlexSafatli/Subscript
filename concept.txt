@@ -1,0 +1,54 @@
+Tentatively titled Subscript
+
+Language intended for DYNAMIC CONTENT and object model data population.
+
+Language should be of form
+
+  Object Interface [Interface] [Interface]
+    [.(argA,argB) Function] (Constructor)
+    Field Type = Value
+
+where Value can arise from an Object or Function.
+
+Language should be primarily functional. Functions are of form similar to Haskell. For instance:
+
+  frst (a,b)
+
+would produce
+
+  a
+
+Functions are objects. For example,
+
+  concat
+    .(a,b) add a b
+
+No base data types are present. Everything is an object, even though it may not be necessarily implemented in such a fashion in the backend. For example, need to use an Array object in order to instantiate an array.
+
+Generics are possible but implicit depending on Interface conformations.
+
+---
+
+Example using PF character generation application where want to model a combat feat "Dodge".
+
+  import Pathfinder.Feat
+  import Pathfinder.Character
+  import Pathfinder.SRD.FeatList
+  namespace Pathfinder
+
+  Dodge Feat
+    Temporary = True
+    Active = Condition (ArmorBonus 1 Character.AC "Dodge")
+    Expires = When Active Character.FlatFooted
+  add Dodge SRD.FeatList
+
+Possible syntactic sugar:
+
+  import Pathfinder.{Feat,Character,SRD.FeatList}
+  namespace Pathfinder
+
+  Dodge Feat Element(SRD.FeatList)
+    Temporary = True
+    Active = Condition (ArmorBonus 1 Character.AC "Dodge")
+    Expires = When Active Character.FlatFooted
+
