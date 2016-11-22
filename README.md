@@ -9,3 +9,33 @@ A general philosophy of [KISS](http://en.wikipedia.org/wiki/KISS_principle) is f
   - **Reflective programming**. This language will strongly support the notion of reflection and observation (such as in [KVO](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html) as it is found in Objective-C or Swift), with a focus on *other languages* and interfaces that are fed to it.
   - **Multi-paradigm**. With a focus on declarative programming (functional and logical). The language will possess a fusion of concepts found in the [Haskell](https://www.haskell.org) and [Prolog](http://en.wikipedia.org/wiki/Prolog) languages with a more fluid and smooth syntax.
   - **Implicit generics**. To avoid more keystrokes, generics are automatically inferred when needed.
+  
+Example
+-------
+
+Example using PF character generation application where want to model a combat feat "Dodge".
+
+~~~~
+  import Pathfinder.Feat
+  import Pathfinder.Character
+  import Pathfinder.SRD.FeatList
+  namespace Pathfinder
+
+  Dodge Feat
+    Temporary = True
+    Active = Condition (ArmorBonus 1 Character.AC "Dodge")
+    Expires = When Active Character.FlatFooted
+  add Dodge SRD.FeatList
+~~~~
+
+Possible syntactic sugar:
+
+~~~~
+  import Pathfinder.{Feat,Character,SRD.FeatList}
+  namespace Pathfinder
+
+  Dodge Feat Element(SRD.FeatList)
+    Temporary = True
+    Active = Condition (ArmorBonus 1 Character.AC "Dodge")
+    Expires = When Active Character.FlatFooted
+~~~~
